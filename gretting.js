@@ -9,13 +9,13 @@ function saveName(text) {
   localStorage.setItem(USER_LS, text);
 }
 
-function handleSubmit(event) {// 서브밋이라는 이벤트를 받아서 기본 이벤트 값을 없애줌(기본 submit 이벤트를 실행시키게 되면
-// 페이지의 루트 권한으로 가서 외부에 데이터를 전송하려고 하기때문에 페이지가 리로드 됨. 이러한 이벤트를 막기위해 프리이벤트 디폴트를 해줌.)
-  event.preventDefault();
-  const currentValue = input.value;
-  paintGreeting(currentValue);
-  saveName(currentValue);
-}
+// function handleSubmit(event) {// 서브밋이라는 이벤트를 받아서 기본 이벤트 값을 없애줌(기본 submit 이벤트를 실행시키게 되면
+// // 페이지의 루트 권한으로 가서 외부에 데이터를 전송하려고 하기때문에 페이지가 리로드 됨. 이러한 이벤트를 막기위해 프리이벤트 디폴트를 해줌.)
+//   event.preventDefault();
+//   const currentValue = input.value;
+//   paintGreeting(currentValue);
+//   saveName(currentValue);
+// }
 
 function askForName() {// 폼을 보이게 하고 값을 전달받기 위한 이벤트를 생성함
   form.classList.add(SHOWING_CN);
