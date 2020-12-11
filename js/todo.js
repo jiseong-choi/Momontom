@@ -24,15 +24,19 @@ const HandleCheckBox = ({ target }) => {
     return span.style.textDecoration = "none";
 };
 
-const saveTodos = todos => {
+const saveTodos = (todos, name) => {
     //json is javascript object 어쩌고임.
     //javascript는 바로 로컬 스토리지에
     //데이터를 정상적으로 저장할 수 없음
 
-    localStorage.setItem("toDos", JSON.stringify(todos));
+    if(name !== undefined && name.length !== 0) {
+        return localStorage.setItem(name, JSON.stringify(todos));        
+    };
+
+    return localStorage.setItem("toDos", JSON.stringify(todos));
 };
 
-const paintTodo = (text, todoList) => {
+const paintTodo = (text, todoList, name) => {
     const todoBox = document.createElement("li")
     const deleteButton = document.createElement("button");
     const checkBox = document.createElement("input");
@@ -62,7 +66,7 @@ const paintTodo = (text, todoList) => {
 
     todos.push(todoObject);
 
-    saveTodos(todos);
+    saveTodos(todos, name);
     checkBox.addEventListener("change", HandleCheckBox);
 };
 
@@ -72,15 +76,17 @@ const handleSubmit = event => {
     if(event.target.classList.contains("showing")) {
         const nameInput = event.target.children[0];
 
-        return input.parentNode.innerHTML = input.value + "님 안녕하세요!";
+        return nameInput.parentNode.innerHTML = `<span>${nameInput.value}</span> 님 안녕하세요!`;
     };
 
     const todoInput = event.target.children[0];
 
     const todoList = document.querySelector(".js-toDoList");
 
+    const name = document.querySelector(".js-form").children[0].innerHTML;
+
     const currentValue = todoInput.value;
-    paintTodo(currentValue, todoList);
+    paintTodo(currentValue, todoList, name);
 
     todoInput.value = "";
 };
