@@ -69,7 +69,14 @@ const paintTodo = (text, todoList) => {
 const handleSubmit = event => {
     event.preventDefault();
 
+    if(event.target.classList.contains("showing")) {
+        const nameInput = event.target.children[0];
+
+        return input.parentNode.innerHTML = input.value + "님 안녕하세요!";
+    };
+
     const todoInput = event.target.children[0];
+
     const todoList = document.querySelector(".js-toDoList");
 
     const currentValue = todoInput.value;
